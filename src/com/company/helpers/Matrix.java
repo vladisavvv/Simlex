@@ -153,4 +153,15 @@ public class Matrix {
 
         return newB;
     }
+
+    public Matrix remove(int idLine) {
+        assert idLine < getN();
+        final Matrix matrix = new Matrix(getN() - 1, getM());
+        for (int i = 0; i < getN() - 1; ++i) {
+            for (int j = 0; j < getM(); ++j) {
+                matrix.set(i, j, a[i + (i >= idLine ? 1 : 0)][j]);
+            }
+        }
+        return matrix;
+    }
 }

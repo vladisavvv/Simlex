@@ -63,4 +63,22 @@ public class MatrixOperations {
 
         return e.multiply(aInverse);
     }
+
+    public static Matrix mergeMatrix(final Matrix left,
+                                     final Matrix right) {
+        assert left.getN() == right.getN();
+        final Matrix answer = new Matrix(left.getN(), left.getM() + right.getM());
+
+        for (int i = 0; i < left.getN(); ++i) {
+            for (int j = 0; j < left.getM(); ++j) {
+                answer.set(i, j, left.get(i, j));
+            }
+
+            for (int j = 0; j < right.getM(); ++j) {
+                answer.set(i, j + left.getM(), right.get(i, j));
+            }
+        }
+
+        return answer;
+    }
 }
