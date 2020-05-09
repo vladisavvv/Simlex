@@ -72,14 +72,26 @@ public class Matrix {
     }
 
     public Matrix multiply(final Matrix second) {
-        assert second.getN() == getM();
+        final Matrix answer;
 
-        final Matrix answer = new Matrix(getN(), second.getM());
+        if (second.getN() == getM()) {
+            answer = new Matrix(getN(), second.getM());
 
-        for (int i = 0; i < getN(); ++i) {
-            for (int j = 0; j < second.getM(); ++j) {
-                for (int k = 0; k < getM(); ++k) {
-                    answer.set(i, j, answer.get(i, j) + a[i][k] * second.get(k, j));
+            for (int i = 0; i < getN(); ++i) {
+                for (int j = 0; j < second.getM(); ++j) {
+                    for (int k = 0; k < getM(); ++k) {
+                        answer.set(i, j, answer.get(i, j) + a[i][k] * second.get(k, j));
+                    }
+                }
+            }
+        } else {
+            answer = new Matrix(getN(), second.getN());
+
+            for (int i = 0; i < getN(); ++i) {
+                for (int j = 0; j < second.getN(); ++j) {
+                    for (int k = 0; k < getM(); ++k) {
+                        answer.set(i, j, answer.get(i, j) + a[i][k] * second.get(j, k));
+                    }
                 }
             }
         }
