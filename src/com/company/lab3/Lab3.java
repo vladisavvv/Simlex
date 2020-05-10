@@ -175,7 +175,7 @@ public class Lab3 {
 
                 final boolean[] used = new boolean[m];
                 for (int j : jBasis)
-                    used[i] = true;
+                    used[j] = true;
 
                 boolean isDelete = true;
                 for (int j = 0; j < m; ++j) {
