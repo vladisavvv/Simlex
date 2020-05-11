@@ -81,4 +81,23 @@ public class MatrixOperations {
 
         return answer;
     }
+
+    public static Matrix mergeMatrix2(final Matrix up,
+                                      final Matrix down) {
+        assert up.getM() == down.getM();
+        final Matrix answer = new Matrix(up.getN() + down.getN(), up.getM());
+
+        for (int i = 0; i < up.getN(); ++i) {
+            for (int j = 0; j < up.getM(); ++j) {
+                answer.set(i, j, up.get(i, j));
+            }
+        }
+        for (int i = 0; i < down.getN(); ++i) {
+            for (int j = 0; j < down.getM(); ++j) {
+                answer.set(i + up.getN(), j, down.get(i, j));
+            }
+        }
+
+        return answer;
+    }
 }

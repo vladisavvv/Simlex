@@ -166,6 +166,22 @@ public class Matrix {
         return newB;
     }
 
+    public Matrix add(final Matrix b) {
+        Matrix newB = new Matrix(b);
+
+        if (!(getN() == b.getN() && getM() == b.getM()))
+            newB = b.transpose();
+
+        assert getN() == newB.getN() && getM() == newB.getM();
+
+        for (int i = 0; i < getN(); ++i) {
+            for (int j = 0; j < getM(); ++j)
+                newB.set(i, j, a[i][j] + newB.get(i, j));
+        }
+
+        return newB;
+    }
+
     public Matrix remove(int idLine) {
         assert idLine < getN();
         final Matrix matrix = new Matrix(getN() - 1, getM());
